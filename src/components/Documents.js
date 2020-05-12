@@ -2,22 +2,22 @@ import React from 'react';
 import Document from './Document';
 import { getTotalSizeInKb } from '../helpers';
 
-const Amount = ({ length }) => {
+const getMessage = length => {
   if (!length) {
-    return <h2>No documents yet</h2>;
+    return 'No documents yet';
   }
 
   if (length === 1) {
-    return <h2>1 document</h2>;
+    return '1 document';
   }
 
-  return <h2>{length} documents</h2>;
+  return `${length} documents`;
 }
 
 const Documents = ({ documents, onDelete }) => (
   <section id="documents">
     <div>
-      <Amount length={documents.length} />
+      <h2>{getMessage(documents.length)}</h2>
       <span>Total size: {getTotalSizeInKb(documents)} kb</span>
     </div>
     <ul>
