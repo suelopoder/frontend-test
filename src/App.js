@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
+import Search from './components/Search';
+import Upload from './components/Upload';
+import Documents from './components/Documents';
 
 const TEST_DOCS = [
   { name: 'Doc 1', size: 999999 },
@@ -23,24 +26,12 @@ function App() {
 
   return (
     <div className="App">
-      <section>
-        <input
-          onChange={e => setSearchQuery(e.target.value)}
-          value={searchQuery}
-          placeholder="Seach documents..."
-        />
-      </section>
-      <section>
-        <button onClick={addDoc}>Upload</button>
-      </section>
-      <section>
-        docs
-        <ul>
-          {displayedDocs.map(doc =>
-            <li key={doc.name}>{doc.name}</li>
-          )}
-        </ul>
-      </section>
+      <Search
+        onSearch={setSearchQuery}
+        query={searchQuery}
+      />
+      <Upload onUpload={() => addDoc()} />
+      <Documents documents={displayedDocs} />
     </div>
   );
 }
