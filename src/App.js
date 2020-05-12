@@ -14,16 +14,16 @@ function App() {
 
   useEffect(() => {
     async function fetchDocs() {
+      setFetchingDocs(true);
+      setErrorFetchingDocs(null);
       try {
-        setFetchingDocs(true);
         const result = await fetch(`./api?query=${searchQuery}`);
         const data = await result.json();
         setDocs(data);
-        setFetchingDocs(false);
       } catch (error) {
-        setFetchingDocs(false);
         setErrorFetchingDocs(error.message);
       }
+      setFetchingDocs(false);
     }
     fetchDocs();
   }, [searchQuery]);
