@@ -20,3 +20,13 @@ export const getFileUploadError = file => {
 
   return null;
 }
+
+export const getSizeInKb = size =>
+  Math.round(size / 1024);
+
+export const getTotalSizeInKb = documents => {
+  const totalSize = documents
+    .map(doc => doc.size)
+    .reduce((a,b) => a+b, 0);
+  return getSizeInKb(totalSize);
+};
