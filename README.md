@@ -20,7 +20,6 @@ To launch tests in interactive mode run `npm test`
 
 ## TODO
 
-- validate mime type on file submit
 - sanitize doc names on output
 - sanitize search query on input
 - Implement design
