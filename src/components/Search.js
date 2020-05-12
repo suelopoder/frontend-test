@@ -6,6 +6,7 @@ const Search = ({ onSearch, query }) => (
       onChange={e => onSearch(e.target.value)}
       value={query}
       placeholder="Search documents..."
+      data-testid="search"
     />
   </section>
 );

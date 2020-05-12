@@ -2,8 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/upload/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders without crash', () => {
+  render(<App />);
+});
+
+test('renders main controls', () => {
+  const { getByText, getByTestId } = render(<App />);
+  const uploadText = getByText(/upload/i);
+  expect(uploadText).toBeInTheDocument();
+  const searchText = getByTestId(/search/i);
+  expect(searchText).toBeInTheDocument();
 });
