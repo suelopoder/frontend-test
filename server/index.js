@@ -1,6 +1,9 @@
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
 const formidable = require('formidable');
+
+const app = express();
+app.use(bodyParser.json());
 
 let database = [
   { name: 'Doc 1', size: 999999 },
@@ -10,7 +13,7 @@ let database = [
 
 app.get('/api', function (req, res) {
   const query = req.query.query.toLocaleLowerCase();
-  console.log('List docs for query:', query);
+  console.log('List docs with query', query);
   const matches = database.filter(doc =>
     doc.name.toLocaleLowerCase().includes(
       query.toLocaleLowerCase()))
@@ -23,14 +26,16 @@ app.post('/api', function (req, res) {
       return;
     }
     const { file } = files;
-    console.log('New doc:', file.name);
+    console.log('New doc ', file.name);
     const newDoc = { name: file.name, size: file.size };
     database.push(newDoc);
     res.send(database);
   })
 });
 app.delete('/api', function (req, res) {
-  database = database.slice(1);
+  const { name } = req.body;
+  console.log('Remove doc', name);
+  database = database.filter(doc => doc.name !== name);
   res.send(database);
 });
 

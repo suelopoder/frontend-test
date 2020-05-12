@@ -1,11 +1,14 @@
 import React from 'react';
 
-const Documents = ({ documents }) => (
+const Documents = ({ documents, onDelete }) => (
   <section>
     Documents
     <ul>
       {documents.map(doc =>
-        <li key={doc.name}>{doc.name}</li>
+        <li key={doc.name}>
+          {doc.name}
+          <button onClick={() => onDelete(doc)}>delete</button>
+        </li>
       )}
     </ul>
   </section>

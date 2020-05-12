@@ -30,6 +30,8 @@ function App() {
   }, [searchQuery]);
 
   const onUpload = async file => {
+    setLoading(true);
+    setError(null);
     try {
       const formData = new FormData();
       formData.append('file', file);
@@ -39,11 +41,32 @@ function App() {
     } catch (error) {
       setError(error.message);
     }
+    setLoading(false);
   }
 
   const onSearch = query => {
     // TODO validate query
     setSearchQuery(query);
+  }
+
+  const onDelete = async document => {
+    setLoading(true);
+    setError(null);
+    try {
+      const body = { name: document.name };
+      await fetch('/api', {
+        method: 'DELETE',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      // clear search query so new file is visible
+      setSearchQuery('');
+    } catch (error) {
+      setError(error.message);
+    }
+    setLoading(false);
   }
 
   return (
@@ -52,7 +75,7 @@ function App() {
       <Upload onUpload={onUpload} isValid={getFileUploadError} />
       {loading && <Loading />}
       {error && <UIError error={error} />}
-      {docs.length && <Documents documents={docs} />}
+      {docs.length && <Documents documents={docs} onDelete={onDelete} />}
     </div>
   );
 }

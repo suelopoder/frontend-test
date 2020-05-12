@@ -20,6 +20,7 @@ To launch tests in interactive mode run `npm test`
 
 ## TODO
 
+- use generated ids instead of names (update key in client)
 - sanitize doc names on output
 - sanitize search query on input
 - Implement design
