@@ -17,7 +17,8 @@ app.get('/api', function (req, res) {
 app.post('/api', function (req, res) {
   // TOOD add the real doc
   const random = Math.ceil(Math.random()*100);
-  database.push({ name: `Doc ${random}`, size: random * 1000 });
+  const newDoc = { name: `Doc ${random}`, size: random * 1000 };
+  database.push(newDoc);
   res.send(database);
 });
 app.delete('/api', function (req, res) {
