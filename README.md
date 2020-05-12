@@ -44,10 +44,6 @@ To launch tests in interactive mode run `npm test`
 - SSR for SEO
 - keyboard shortcuts for quick usage
 
-## Notes
-
-- I am using String.includes so IE is not supported
-
 ## Libs
 
 - express.io for simple API managment
