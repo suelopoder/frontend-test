@@ -20,10 +20,10 @@ To launch tests in interactive mode run `npm test`
 
 ## TODO
 
+- Implement design
 - use generated ids instead of names (update key in client)
 - sanitize doc names on output
 - sanitize search query on input
-- Implement design
 - Handle errors and loading states in client
 - Add UI tests
 - Make API DELETE and POST handle params :)
@@ -51,7 +51,9 @@ To launch tests in interactive mode run `npm test`
 
 ## Libs
 
-- express.io for simple API managment
+- `express.io` for API managment
+- `bodyParser` for JSON param parsing
+- `formidable` to handle file POST parsing
 
 ## Security
 

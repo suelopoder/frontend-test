@@ -23,7 +23,7 @@ const Upload = ({ onUpload, isValid }) => {
   }
 
   return (
-    <section>
+    <section id="upload">
       <form onSubmit={ev => ev.preventDefault()}>
         <input
           type="file"

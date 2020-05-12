@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Search = ({ onSearch, query }) => (
-  <section>
+  <section id="search">
     <input
       onChange={e => onSearch(e.target.value)}
       value={query}
