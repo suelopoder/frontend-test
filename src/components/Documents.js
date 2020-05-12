@@ -20,11 +20,13 @@ const Documents = ({ documents, onDelete }) => (
       <h2>{getMessage(documents.length)}</h2>
       {documents.length > 0 && <span>Total size: {getTotalSizeInKb(documents)} kb</span>}
     </div>
-    <ul>
-      {documents.map(doc =>
-        <Document {...doc} key={doc.name} onDelete={() => onDelete(doc)} />
-      )}
-    </ul>
+    {documents.length > 0 &&
+      <ul>
+        {documents.map(doc =>
+          <Document {...doc} key={doc.name} onDelete={() => onDelete(doc)} />
+        )}
+      </ul>
+    }
   </section>
 );
 
