@@ -42,12 +42,8 @@ describe('getSizeInKb', () => {
     expect(getSizeInKb(1024)).toBe(1);
   });
 
-  test('amost 1024 b should return 1 kb (rounds)', () => {
-    expect(getSizeInKb(1023)).toBe(1);
-  });
-
-  test('300 b should return 0 kb (rounds)', () => {
-    expect(getSizeInKb(300)).toBe(0);
+  test('less than 1024 b should return <1 kb', () => {
+    expect(getSizeInKb(1023)).toBe('<1');
   });
 });
 
