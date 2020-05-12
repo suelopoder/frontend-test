@@ -20,6 +20,8 @@ To launch tests in interactive mode run `npm test`
 
 ## TODO
 
+- sanitize doc names on output
+- sanitize search query on input
 - Implement design
 - Handle errors and loading states in client
 - Add UI tests
@@ -30,6 +32,7 @@ To launch tests in interactive mode run `npm test`
 
 ## Future improvements
 
+- remove flicker when server response is too fast
 - docs are images so we could show them on the client
 - add pagination
 - typescript
@@ -47,3 +50,12 @@ To launch tests in interactive mode run `npm test`
 ## Libs
 
 - express.io for simple API managment
+
+## Security
+
+### Addressed issues
+
+- sanitize doc names on output
+- sanitize search query on input
+
+### Not addressed issues
