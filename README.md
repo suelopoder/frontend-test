@@ -20,6 +20,7 @@ To launch tests in interactive mode run `npm test`
 
 ## TODO
 
+- validate mime type on file submit
 - sanitize doc names on output
 - sanitize search query on input
 - Implement design
@@ -29,6 +30,7 @@ To launch tests in interactive mode run `npm test`
 - DELETE and POST should return single entry and not list. This also involves updating the client.
 - Make a single npm script to run both server and client
 - Document API endpoints
+- add linting
 
 ## Future improvements
 
@@ -57,5 +59,6 @@ To launch tests in interactive mode run `npm test`
 
 - sanitize doc names on output
 - sanitize search query on input
+- submit files with proper extension but wrong mime type
 
 ### Not addressed issues

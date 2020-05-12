@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="App">
       <Search onSearch={onSearch} query={searchQuery} />
-      <Upload onUpload={addDoc} />
+      <Upload onUpload={addDoc} isValid={file => false} />
       {fetchingDocs && <Loading />}
       {errorFetchingDocs && <UIError />}
       {docs.length && <Documents documents={docs} />}
