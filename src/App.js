@@ -9,32 +9,36 @@ import { getFileUploadError } from './helpers';
 
 function App() {
   const [docs, setDocs] = useState([]);
-  const [errorFetchingDocs, setErrorFetchingDocs] = useState(null);
-  const [fetchingDocs, setFetchingDocs] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     async function fetchDocs() {
-      setFetchingDocs(true);
-      setErrorFetchingDocs(null);
+      setLoading(true);
+      setError(null);
       try {
         const result = await fetch(`./api?query=${searchQuery}`);
         const data = await result.json();
         setDocs(data);
       } catch (error) {
-        setErrorFetchingDocs(error.message);
+        setError(error.message);
       }
-      setFetchingDocs(false);
+      setLoading(false);
     }
     fetchDocs();
   }, [searchQuery]);
 
-  const addDoc = () => {
-    const random = Math.ceil(Math.random()*100);
-    setDocs([
-      ...docs,
-      { name: `Doc ${random}`, size: random * 1000 }
-    ]);
+  const onUpload = async file => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      await fetch('/api', { method: 'POST', body: formData })
+      // clear search query so new file is visible
+      setSearchQuery('');
+    } catch (error) {
+      setError(error.message);
+    }
   }
 
   const onSearch = query => {
@@ -45,9 +49,9 @@ function App() {
   return (
     <div className="App">
       <Search onSearch={onSearch} query={searchQuery} />
-      <Upload onUpload={addDoc} isValid={getFileUploadError} />
-      {fetchingDocs && <Loading />}
-      {errorFetchingDocs && <UIError />}
+      <Upload onUpload={onUpload} isValid={getFileUploadError} />
+      {loading && <Loading />}
+      {error && <UIError error={error} />}
       {docs.length && <Documents documents={docs} />}
     </div>
   );
