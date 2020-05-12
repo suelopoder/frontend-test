@@ -75,7 +75,7 @@ function App() {
       <Upload onUpload={onUpload} isValid={getFileUploadError} />
       {loading && <Loading />}
       {error && <UIError error={error} />}
-      {docs.length && <Documents documents={docs} onDelete={onDelete} />}
+      {docs.length > 0 && <Documents documents={docs} onDelete={onDelete} />}
     </div>
   );
 }

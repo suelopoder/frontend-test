@@ -12,8 +12,20 @@ h2 {
   font-size: 2rem;
   margin: 0;
 }
+h3 {
+  margin: 0.5rem 0;
+}
 span, button, input {
   font-size: 1rem;
+}
+button {
+  text-align: center;
+  background-color: #b7c9fe;
+  border: 1px solid #535a71;
+}
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 .app {
@@ -37,11 +49,8 @@ span, button, input {
   text-align: right;
 }
 #upload button {
-  text-align: center;
   width: 100px;
   line-height: 1.3rem;
-  background-color: #b7c9fe;
-  border: 1px solid #535a71;
   text-transform: uppercase;
 }
 
@@ -51,11 +60,27 @@ span, button, input {
 }
 #documents > div {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
 }
-#documents > span {
+#documents ul {
+  list-style: none;
+  padding: 0;
   display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+}
+#documents ul li {
+  width: 300px;
+  margin: 10px;
+  border: 1px solid #a0a0a0;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+#documents ul li button {
+  padding: 0 1rem;
+  float: right;
 }
 
 @media only screen and ( max-device-width: 736px ) {
@@ -65,4 +90,9 @@ span, button, input {
   #upload button { width: 100%; }
   #documents > div { display: block; }
   section { margin-top: 0.3rem; }
+  #documents ul {}
+  #documents ul li {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
 }
