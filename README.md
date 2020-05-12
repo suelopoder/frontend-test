@@ -20,10 +20,13 @@ To launch tests in interactive mode run `npm test`
 
 ## TODO
 
-- Add tests
+- Implement design
+- Handle errors and loading states in client
+- Add UI tests
 - Make API DELETE and POST handle params :)
 - DELETE and POST should return single entry and not list. This also involves updating the client.
 - Make a single npm script to run both server and client
+- Document API endpoints
 
 ## Future improvements
 
@@ -40,3 +43,11 @@ To launch tests in interactive mode run `npm test`
 - add a service worker (could list docs offline, install app)
 - SSR for SEO
 - keyboard shortcuts for quick usage
+
+## Notes
+
+- I am using String.includes so IE is not supported
+
+## Libs
+
+- express.io for simple API managment
