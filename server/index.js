@@ -8,8 +8,11 @@ let database = [
 ];
 
 app.get('/api', function (req, res) {
-  // TODO implement search
-  res.send(database);
+  const query = req.query.query.toLocaleLowerCase();
+  const matches = database.filter(doc =>
+    doc.name.toLocaleLowerCase().includes(
+      query.toLocaleLowerCase()))
+  res.send(matches);
 });
 app.post('/api', function (req, res) {
   // TOOD add the real doc

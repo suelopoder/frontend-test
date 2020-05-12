@@ -16,7 +16,7 @@ function App() {
     async function fetchDocs() {
       try {
         setFetchingDocs(true);
-        const result = await fetch('./api');
+        const result = await fetch(`./api?query=${searchQuery}`);
         const data = await result.json();
         setDocs(data);
         setFetchingDocs(false);
@@ -26,14 +26,7 @@ function App() {
       }
     }
     fetchDocs();
-  }, []);
-
-  if (errorFetchingDocs && !docs.length) {
-    return <UIError />;
-  }
-  if (fetchingDocs) {
-    return <Loading />;
-  }
+  }, [searchQuery]);
 
   const addDoc = () => {
     const random = Math.ceil(Math.random()*100);
@@ -43,14 +36,18 @@ function App() {
     ]);
   }
 
+  const onSearch = query => {
+    // TODO validate query
+    setSearchQuery(query);
+  }
+
   return (
     <div className="App">
-      <Search
-        onSearch={setSearchQuery}
-        query={searchQuery}
-      />
-      <Upload onUpload={() => addDoc()} />
-      <Documents documents={docs} />
+      <Search onSearch={onSearch} query={searchQuery} />
+      <Upload onUpload={addDoc} />
+      {fetchingDocs && <Loading />}
+      {errorFetchingDocs && <UIError />}
+      {docs.length && <Documents documents={docs} />}
     </div>
   );
 }
