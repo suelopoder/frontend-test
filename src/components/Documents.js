@@ -18,7 +18,7 @@ const Documents = ({ documents, onDelete }) => (
   <section id="documents">
     <div>
       <h2>{getMessage(documents.length)}</h2>
-      <span>Total size: {getTotalSizeInKb(documents)} kb</span>
+      {documents.length > 0 && <span>Total size: {getTotalSizeInKb(documents)} kb</span>}
     </div>
     <ul>
       {documents.map(doc =>
