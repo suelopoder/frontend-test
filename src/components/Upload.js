@@ -1,16 +1,21 @@
 import React, { useRef, useState } from 'react';
+import { VALID_FILE_EXTENSIONS } from '../constants';
 
 const Upload = ({ onUpload, isValid }) => {
   const inputRef = useRef(null);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   const onButtonClick = () => {
     inputRef.current.click();
   };
   const onFileUpload = ev => {
     setError(false);
     const target = ev.target.files[0];
-    if (!isValid(target)) {
-      setError(true);
+    if (!target) {
+      return false;
+    }
+    const error = isValid(target);
+    if (error) {
+      setError(error);
       return false;
     }
 
@@ -23,7 +28,7 @@ const Upload = ({ onUpload, isValid }) => {
         <input
           type="file"
           onChange={onFileUpload}
-          accept="file_extension:.jpg,.jpeg,.png"
+          accept={`file_extension:${VALID_FILE_EXTENSIONS.join(',')}`}
           style={{ display: 'none' }}
           ref={inputRef}
           />

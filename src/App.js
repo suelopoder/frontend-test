@@ -5,6 +5,7 @@ import Upload from './components/Upload';
 import Documents from './components/Documents';
 import Loading from './components/Loading';
 import UIError from './components/Error';
+import { getFileUploadError } from './helpers';
 
 function App() {
   const [docs, setDocs] = useState([]);
@@ -44,7 +45,7 @@ function App() {
   return (
     <div className="App">
       <Search onSearch={onSearch} query={searchQuery} />
-      <Upload onUpload={addDoc} isValid={file => false} />
+      <Upload onUpload={addDoc} isValid={getFileUploadError} />
       {fetchingDocs && <Loading />}
       {errorFetchingDocs && <UIError />}
       {docs.length && <Documents documents={docs} />}
