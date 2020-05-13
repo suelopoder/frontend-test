@@ -70,6 +70,7 @@ This endpoint deletes a document with the `id` passed in the path. If no such fi
 - `express.io` for API managment
 - `bodyParser` for JSON param parsing
 - `formidable` to handle file POST parsing
+- `uuid` to generate id for files
 
 ## Security
 

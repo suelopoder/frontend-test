@@ -39,7 +39,7 @@ export default function useDocuments() {
     setLoading(true);
     setError(null);
     try {
-      await API.deleteDoc(document.name);
+      await API.deleteDoc(document.id);
       const data = await API.getDocs(searchQuery);
       setDocs(data);
     } catch (error) {

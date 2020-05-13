@@ -1,18 +1,33 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const formidable = require('formidable');
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 app.use(bodyParser.json());
 
-let database = [
-  { name: 'Doc 1', size: 999999 },
-  { name: 'Doc 2', size: 20 },
-  { name: 'Doc 3', size: 50000 },
-];
+const ID_LENGTH = 36;
+const DATA_SOURCE = path.join(__dirname, 'database');
+const filePath = filename => path.join(DATA_SOURCE, filename);
+
+const getDatabase = () => {
+  const files = fs.readdirSync(DATA_SOURCE);
+  return files.map(file => {
+    const stats = fs.statSync(filePath(file));
+    const metadata = {
+      id: file.substr(0, ID_LENGTH),
+      name: file.substr(ID_LENGTH+1, file.length - 1),
+      size: stats["size"],
+    };
+    return metadata;
+  });
+}
 
 app.get('/api', function (req, res) {
   const { query: rawQuery } = req.query;
+  const database = getDatabase();
   if (!rawQuery) {
     console.log('List docs');
     res.send(database);
@@ -34,8 +49,9 @@ app.post('/api', function (req, res) {
     }
     const { file } = files;
     console.log('New doc ', file.name);
-    const newDoc = { name: file.name, size: file.size };
-    database.push(newDoc);
+    const newId = uuidv4();
+    const internalName = `${newId}-${file.name}`;
+    fs.writeFileSync(filePath(internalName), file);
     res.end();
   })
 });
@@ -43,7 +59,15 @@ app.post('/api', function (req, res) {
 app.delete('/api/:id', function (req, res) {
   const { id } = req.params;
   console.log('Remove doc', id);
-  database = database.filter(doc => doc.name !== id);
+  const database = getDatabase();
+  for (const row of database) {
+    if (row.id === id) {
+      const internalName = `${id}-${row.name}`;
+      fs.unlinkSync(filePath(internalName))
+      res.end();
+      return;
+    }
+  }
   res.end();
 });
 
