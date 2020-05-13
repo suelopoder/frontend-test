@@ -62,6 +62,7 @@ This endpoint deletes a document with the `id` passed in the path. If no such fi
 - SSR
 - keyboard shortcuts for quick usage
 - support dragging files for upload
+- performance on server search could be improved
 
 ## Libs
 
