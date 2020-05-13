@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { VALID_FILE_EXTENSIONS } from '../constants';
 
-const Upload = ({ onUpload, isValid }) => {
+const Upload = ({ onUpload, getFileError }) => {
   const inputRef = useRef(null);
   const [error, setError] = useState(null);
   const onButtonClick = () => {
@@ -14,7 +14,7 @@ const Upload = ({ onUpload, isValid }) => {
     if (!target) {
       return false;
     }
-    const error = isValid(target);
+    const error = getFileError(target);
     if (error) {
       setError(error);
       return false;
@@ -43,7 +43,7 @@ const Upload = ({ onUpload, isValid }) => {
 
 Upload.propTypes = {
   onUpload: PropTypes.func.isRequired,
-  isValid: PropTypes.func.isRequired,
+  getFileError: PropTypes.func.isRequired,
 };
 
 export default Upload;

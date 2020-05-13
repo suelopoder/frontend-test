@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="app">
       <Search onSearch={searchDocs} query={searchQuery} />
-      <Upload onUpload={uploadDoc} isValid={getFileUploadError} />
+      <Upload onUpload={uploadDoc} getFileError={getFileUploadError} />
       {loading && <Loading />}
       {error && <UIError error={error} />}
       <Documents documents={docs} onDelete={deleteDoc} />

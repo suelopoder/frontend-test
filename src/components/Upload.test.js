@@ -13,7 +13,7 @@ const FILE = new File(
 test('callback is called when file is valid', () => {
   const onUploadFn = jest.fn();
 
-  const { getByTestId } = render(<Upload onUpload={onUploadFn} isValid={() => null}/>)
+  const { getByTestId } = render(<Upload onUpload={onUploadFn} getFileError={() => null}/>)
   const input = getByTestId('upload-input');
   act(() => {
     fireEvent.change(input, { target: { files: [FILE] } });
@@ -25,7 +25,7 @@ test('callback is called when file is valid', () => {
 test('callback is not called and error is shown for when file is invalid', () => {
   const onUploadFn = jest.fn();
 
-  const { getByText, getByTestId } = render(<Upload onUpload={onUploadFn} isValid={() => 'some error'}/>)
+  const { getByText, getByTestId } = render(<Upload onUpload={onUploadFn} getFileError={() => 'some error'}/>)
   const input = getByTestId('upload-input');
   act(() => {
     fireEvent.change(input, { target: { files: [FILE] } });
@@ -48,7 +48,7 @@ test('error is cleared after a valid file is submitted', () => {
     'chucknorris.png',
     { type: 'image/png' }
   );
-  const { getByText, getByTestId, queryByText } = render(<Upload isValid={getFileError} onUpload={() => {}}/>)
+  const { getByText, getByTestId, queryByText } = render(<Upload getFileError={getFileError} onUpload={() => {}}/>)
   const input = getByTestId('upload-input');
 
   act(() => {
