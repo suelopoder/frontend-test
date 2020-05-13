@@ -23,12 +23,12 @@ test('renders loading, then fetched list', async () => {
 });
 
 test('renders error when fetch failed', async () => {
-  APIMock.getDocs.mockResolvedValue(Promise.reject(new Error("COVID")));
+  APIMock.getDocs.mockResolvedValue(Promise.reject(new Error()));
 
   const { getByText, queryByText } = render(<App />);
 
   await waitForElement(() => getByText(/loading/i));
-  await waitForElement(() => getByText("COVID"));
+  await waitForElement(() => getByText(/error/i));
   expect(queryByText(/loading/i)).toBe(null);
 });
 
