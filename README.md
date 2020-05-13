@@ -1,4 +1,4 @@
-# Diego - 2020-05-13
+# Diego - 2020-05-14
 
 ## Installation
 
@@ -53,6 +53,7 @@ Not addressed issues
 - support dragging files for upload
 - performance on server search could be improved
 - add a button or "X" to clear current search
+- Improve design, its not pixel perfect.
 
 ## Libraries
 
@@ -103,11 +104,3 @@ Example error response:
 
 This endpoint deletes a document with the `id` passed in the path. If no such file exists it returns without failing.
 Returns an empty body with status code 200 on success.
-
-## Other notes
-
-### TODO
-
-- Add UI tests
-- handle properly very long filenames in the UI
-- Improve design, its not pixel perfect.
