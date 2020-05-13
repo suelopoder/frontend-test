@@ -87,10 +87,15 @@ ul {
   float: right;
 }
 
+#feedback {
+  color: rgb(124, 2, 2);
+}
+
 @media only screen and ( max-device-width: 736px ) {
   #upload { order: 1; grid-column: 1 / 3; }
   #search { order: 2; grid-column: 1 / 3; }
-  #documents { order: 3 }
+  #feedback { order: 3 }
+  #documents { order: 4 }
   #upload button { width: 100%; }
   #documents > div { display: block; }
   section { margin-top: 0.3rem; }

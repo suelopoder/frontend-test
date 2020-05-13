@@ -18,8 +18,10 @@ function App() {
     <div className="app">
       <Search onSearch={searchDocs} query={searchQuery} />
       <Upload onUpload={uploadDoc} getFileError={getFileUploadError} />
-      {loading && <Loading />}
-      {error && <UIError error={error} />}
+      <section id="feedback">
+        {loading && <Loading />}
+        {error && <UIError error={error} />}
+      </section>
       <Documents documents={docs} onDelete={deleteDoc} />
     </div>
   );
