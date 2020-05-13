@@ -16,7 +16,7 @@ To run tests in interactive mode run `npm test`.
 Addressed issues
 
 - XSS doc names on output. To test rename a filename on the database to `<script>alert('xss');<script>`
-- XX search query on input. To test search for `<script>alert('xss');<script>`.
+- XSS search query on input. To test search for `<script>alert('xss');<script>`.
 - XSS for file names. To test upload a file named `<script>alert('xss');<script>.png`
 - Big file attacks are not possible.
 - File name attack. To test upload a file named `some/path.png`. The `/` will be replaced as `:`
