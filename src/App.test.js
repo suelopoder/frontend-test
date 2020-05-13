@@ -70,7 +70,6 @@ test('uploading a doc should add it to the list', async () => {
   APIMock.getDocs.mockResolvedValue([TEST_ENTRY]);
   // if upload is called, add new doc to the list on next get call
   APIMock.uploadDoc.mockImplementation(() => {
-    console.log('called!');
     APIMock.getDocs.mockResolvedValue([TEST_ENTRY, NEW_DOC]);
   });
 
