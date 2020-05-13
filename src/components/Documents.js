@@ -28,7 +28,7 @@ const Documents = ({ documents, onDelete }) => (
           <Document
             key={doc.id}
             name={doc.name}
-            size={getSizeInKb(doc.size)}
+            size={`${getSizeInKb(doc.size)}kb`}
             onDelete={() => onDelete(doc)}
           />
         )}
@@ -39,7 +39,11 @@ const Documents = ({ documents, onDelete }) => (
 
 Documents.propTypes = {
   documents: PropTypes.arrayOf(DocumentPropShape).isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
+}
+
+Documents.defaultProps = {
+  onDelete: () => {},
 }
 
 export default Documents;
