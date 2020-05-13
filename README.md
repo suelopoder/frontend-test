@@ -52,6 +52,7 @@ Not addressed issues
 - keyboard shortcuts for quick usage
 - support dragging files for upload
 - performance on server search could be improved
+- add a button or "X" to clear current search
 
 ## Libraries
 
