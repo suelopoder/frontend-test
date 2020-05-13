@@ -20,8 +20,9 @@ Addressed issues
 - XSS for file names. To test upload a file named `<script>alert('xss');<script>.png`
 - Big file attacks are not possible.
 - File name attack. To test upload a file named `some/path.png`. The `/` will be replaced as `:`
-- clickjacking. To test render -a production build- of the app within an iframe
-- general node vulnerabilities. Using node LTS version mitigates this.
+- Clickjacking. To test render -a production build- of the app within an iframe
+- General node vulnerabilities. Using node LTS version mitigates this.
+- Run file validations in server to avoid direct posting to API.
 
 Not addressed issues
 
@@ -32,6 +33,7 @@ Not addressed issues
 
 - Add a GET endpoint `/api/<id>` to serve document data
 - Add a PUT/PATCH endpoint `/api/<id>` to modify document data
+- Files could be sorted by name
 - remove flicker when server response is too fast
 - docs are images so we could show them on the client
 - add pagination
@@ -50,13 +52,12 @@ Not addressed issues
 - keyboard shortcuts for quick usage
 - support dragging files for upload
 - performance on server search could be improved
-- refactor out `formidable` and try out `express-fileupload`
 
 ## Libraries
 
 - `express.io` to build API endpoints
 - `bodyParser` for JSON param parsing
-- `formidable` to handle file POST parsing. I did a simple test and worked but probably not my first option for another implementation. I might refactor it out if I got time.
+- `express-fileupload` to handle file POST parsing
 - `uuid` to generate unique id for files
 - `helmet` to set some headers for security
 

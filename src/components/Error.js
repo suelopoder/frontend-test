@@ -1,5 +1,6 @@
 import React from 'react';
 
-const Error = () => <span>Ups. Something went wrong.</span>;
+const Error = ({ error }) =>
+  <span>{error || 'Ups. Something went wrong'}</span>;
 
 export default Error;

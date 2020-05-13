@@ -53,6 +53,9 @@ ul {
   line-height: 1.3rem;
   text-transform: uppercase;
 }
+#upload .error {
+  display: block;
+}
 
 #documents {
   grid-column: 1 / 3;

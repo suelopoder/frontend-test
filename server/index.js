@@ -1,12 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const helmet = require('helmet');
+const getFileError = require('./getFileError');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(helmet());
+app.use(fileUpload());
+
+// server react build
+app.use(express.static('build'));
 
 const ID_LENGTH = 36;
 const DATA_SOURCE = path.join(__dirname, 'database');
@@ -47,18 +54,27 @@ app.get('/api', function (req, res) {
 });
 
 app.post('/api', function (req, res) {
-  new formidable.IncomingForm().parse(req, (err, fields, files) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send({ error: 'Invalid posta data' });
+  }
+  const { file } = req.files;
+  console.log('New doc', file.name);
+  const error = getFileError(file);
+  if (error) {
+    console.log(file.name, 'is not allowed', error);
+    res.status(400).send({ error });
+    return;
+  }
+
+  const newId = uuidv4();
+  const internalName = `${newId}-${file.name}`;
+  file.mv(filePath(internalName), function(err) {
     if (err) {
-      res.status(400).send({ error: 'Invalid posta data' });
-      return;
+      return res.status(500).send(err);
     }
-    const { file } = files;
-    console.log('New doc ', file.name);
-    const newId = uuidv4();
-    const internalName = `${newId}-${file.name}`;
-    fs.writeFileSync(filePath(internalName), file);
+
     res.end();
-  })
+  });
 });
 
 app.delete('/api/:id', function (req, res) {
