@@ -37,7 +37,6 @@ This endpoint deletes a document with the `id` passed in the path. If no such fi
 ## TODO
 
 - Improve design
-- use generated ids instead of names (update key in client)
 - sanitize doc names on output
 - sanitize search query on input
 - Add UI tests

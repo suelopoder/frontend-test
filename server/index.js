@@ -12,6 +12,11 @@ const ID_LENGTH = 36;
 const DATA_SOURCE = path.join(__dirname, 'database');
 const filePath = filename => path.join(DATA_SOURCE, filename);
 
+// Create data source if not present
+if (!fs.existsSync(DATA_SOURCE)) {
+  fs.mkdirSync(DATA_SOURCE);
+}
+
 const getDatabase = () => {
   const files = fs.readdirSync(DATA_SOURCE);
   return files.map(file => {
