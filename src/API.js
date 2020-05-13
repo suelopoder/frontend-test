@@ -8,15 +8,8 @@ const API = {
     formData.append('file', file);
     return await fetch('/api', { method: 'POST', body: formData });
   },
-  deleteDoc: async docName => {
-    const body = { name: docName };
-    return await fetch('/api', {
-      method: 'DELETE',
-      body: JSON.stringify(body),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+  deleteDoc: async id => {
+    return await fetch(`/api/${id}`, { method: 'DELETE' });
   }
 }
 

@@ -18,15 +18,29 @@ Runs the server side in development mode.
 
 To launch tests in interactive mode run `npm test`
 
+## API endpoints
+
+### GET `/api`
+
+This endpoint lists documents metadata in JSON format. It has an optional `query` query string param to filter documents by name.
+
+### POST `/api`
+
+This endpoint is used to add new documents. Takes a `file` param via POST body with the document to upload.
+Returns a 400 response when the form has invalid format.
+Returns 200 on success.
+
+### DELETE `/api/<id>`
+
+This endpoint deletes a document with the `id` passed in the path. If no such file exists it returns without failing.
+
 ## TODO
 
-- Implement design
+- Improve design
 - use generated ids instead of names (update key in client)
 - sanitize doc names on output
 - sanitize search query on input
-- Handle errors and loading states in client
 - Add UI tests
-- Make API DELETE and POST handle params :)
 - DELETE and POST should return single entry and not list. This also involves updating the client.
 - Make a single npm script to run both server and client
 - Document API endpoints
@@ -34,6 +48,8 @@ To launch tests in interactive mode run `npm test`
 
 ## Future improvements
 
+- Add a GET endpoint `/api/<id>` to serve document data
+- Add a PUT/PATCH endpoint `/api/<id>` to modify document data
 - remove flicker when server response is too fast
 - docs are images so we could show them on the client
 - add pagination
@@ -64,3 +80,5 @@ To launch tests in interactive mode run `npm test`
 - submit files with proper extension but wrong mime type
 
 ### Not addressed issues
+
+- testing images for improper content

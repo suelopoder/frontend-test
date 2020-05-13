@@ -12,13 +12,20 @@ let database = [
 ];
 
 app.get('/api', function (req, res) {
-  const query = req.query.query.toLocaleLowerCase();
+  const { query: rawQuery } = req.query;
+  if (!rawQuery) {
+    console.log('List docs');
+    res.send(database);
+    return;
+  }
+  const query = rawQuery.toLocaleLowerCase();
   console.log('List docs with query', query);
   const matches = database.filter(doc =>
     doc.name.toLocaleLowerCase().includes(
       query.toLocaleLowerCase()))
   res.send(matches);
 });
+
 app.post('/api', function (req, res) {
   new formidable.IncomingForm().parse(req, (err, fields, files) => {
     if (err) {
@@ -29,14 +36,15 @@ app.post('/api', function (req, res) {
     console.log('New doc ', file.name);
     const newDoc = { name: file.name, size: file.size };
     database.push(newDoc);
-    res.send(database);
+    res.end();
   })
 });
-app.delete('/api', function (req, res) {
-  const { name } = req.body;
-  console.log('Remove doc', name);
-  database = database.filter(doc => doc.name !== name);
-  res.send(database);
+
+app.delete('/api/:id', function (req, res) {
+  const { id } = req.params;
+  console.log('Remove doc', id);
+  database = database.filter(doc => doc.name !== id);
+  res.end();
 });
 
 const PORT = process.env.SERVER_PORT || 3001;
