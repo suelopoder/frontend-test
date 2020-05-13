@@ -4,7 +4,7 @@ import { getTotalSizeInKb } from '../helpers';
 
 const getMessage = length => {
   if (!length) {
-    return 'No documents yet';
+    return 'No documents';
   }
 
   if (length === 1) {
