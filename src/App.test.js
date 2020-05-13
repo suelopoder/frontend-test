@@ -8,7 +8,7 @@ jest.mock('./API');
 afterEach(cleanup);
 
 test('updating filter should return less results', async () => {
-  const fakeResponse = [{ name: 'giaconda', size: 1024 }];
+  const fakeResponse = [{ id: '1', name: 'giaconda', size: 1024 }];
   APIMock.getDocs.mockResolvedValue(fakeResponse);
 
   render(<App />);
