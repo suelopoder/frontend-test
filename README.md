@@ -27,7 +27,7 @@ Addressed issues
 Not addressed issues
 
 - Submit files with proper extension but wrong type. To test get a `.txt` file. Rename it as `.jpg` and test uploading it.
-- Testing images for improper content
+- Testing images for improper (adult) content
 
 ## Improvements
 
