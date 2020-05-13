@@ -15,7 +15,7 @@ export default function useDocuments() {
         const data = await API.getDocs(searchQuery);
         setDocs(data);
       } catch (error) {
-        setError(error.message);
+        setError('Error fetching documents');
       }
       setLoading(false);
     }
@@ -30,7 +30,7 @@ export default function useDocuments() {
       const data = await API.getDocs(searchQuery);
       setDocs(data);
     } catch (error) {
-      setError('Error uploading file: ' + error);
+      setError('Error uploading file');
     }
     setLoading(false);
   }
@@ -43,7 +43,7 @@ export default function useDocuments() {
       const data = await API.getDocs(searchQuery);
       setDocs(data);
     } catch (error) {
-      setError('Error deleting file: ' + error);
+      setError('Error deleting file');
     }
     setLoading(false);
   }
