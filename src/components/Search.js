@@ -7,14 +7,18 @@ const Search = ({ onSearch, query }) => (
       onChange={e => onSearch(e.target.value)}
       value={query}
       placeholder="Search documents..."
-      data-testid="search"
+      aria-label="Search documents"
     />
   </section>
 );
 
 Search.propTypes = {
-  onSearch: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
+  onSearch: PropTypes.func,
+}
+
+Search.defaultProps = {
+  onSearch: () => {},
 }
 
 export default Search;
