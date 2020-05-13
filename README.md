@@ -40,9 +40,7 @@ This endpoint deletes a document with the `id` passed in the path. If no such fi
 - sanitize doc names on output
 - sanitize search query on input
 - Add UI tests
-- DELETE and POST should return single entry and not list. This also involves updating the client.
 - Make a single npm script to run both server and client
-- Document API endpoints
 - add linting
 
 ## Future improvements
@@ -61,8 +59,9 @@ This endpoint deletes a document with the `id` passed in the path. If no such fi
 - optionally change file name on upload
 - github badges :)
 - add a service worker (could list docs offline, install app)
-- SSR for SEO
+- SSR
 - keyboard shortcuts for quick usage
+- support dragging files for upload
 
 ## Libs
 
