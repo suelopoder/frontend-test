@@ -23,7 +23,7 @@ export const getFileUploadError = file => {
 
 export const getSizeInKb = size => {
   if (size < 1024) return '<1';
-  return Math.round(size / 1024);
+  return Math.round(size / 1024).toFixed(0);
 };
 
 export const getTotalSizeInKb = documents => {

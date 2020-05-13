@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Search = ({ onSearch, query }) => (
   <section id="search">
@@ -10,5 +11,10 @@ const Search = ({ onSearch, query }) => (
     />
   </section>
 );
+
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
+}
 
 export default Search;
