@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitForElement, cleanup, act } from '@testing-library/react';
+import { render, screen, waitForElement, cleanup } from '@testing-library/react';
 import App from './App';
 import APIMock from './API';
 
