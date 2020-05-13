@@ -23,7 +23,7 @@ const Documents = ({ documents, onDelete }) => (
     {documents.length > 0 &&
       <ul>
         {documents.map(doc =>
-          <Document {...doc} key={doc.name} onDelete={() => onDelete(doc)} />
+          <Document {...doc} key={doc.id} onDelete={() => onDelete(doc)} />
         )}
       </ul>
     }
