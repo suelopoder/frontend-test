@@ -11,6 +11,8 @@ Running locally needs you to run on separate consoles:
 
 To run tests in interactive mode run `npm test`.
 
+To test a production build run `npm run build && node server`
+
 ## Security
 
 Addressed issues
@@ -18,9 +20,9 @@ Addressed issues
 - XSS doc names on output. To test rename a filename on the database to `<script>alert('xss');<script>`
 - XSS search query on input. To test search for `<script>alert('xss');<script>`.
 - XSS for file names. To test upload a file named `<script>alert('xss');<script>.png`
-- Big file attacks are not possible.
+- Big file attacks are not possible for the max size limit
 - File name attack. To test upload a file named `some/path.png`. The `/` will be replaced as `:`
-- Clickjacking. To test render -a production build- of the app within an iframe
+- Clickjacking. To test render -a production build- of the app within an iframe. `x-frame-options` header avoids this.
 - General node vulnerabilities. Using node LTS version mitigates this.
 - Run file validations in server to avoid direct posting to API.
 
