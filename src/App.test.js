@@ -1,15 +1,17 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen, waitForElement, cleanup, act } from '@testing-library/react';
 import App from './App';
+import APIMock from './API';
 
-test('renders without crash', () => {
+jest.mock('./API');
+
+afterEach(cleanup);
+
+test('updating filter should return less results', async () => {
+  const fakeResponse = [{ name: 'giaconda', size: 1024 }];
+  APIMock.getDocs.mockResolvedValue(fakeResponse);
+
   render(<App />);
-});
 
-test('renders main controls', () => {
-  const { getByText, getByTestId } = render(<App />);
-  const uploadText = getByText(/upload/i);
-  expect(uploadText).toBeInTheDocument();
-  const searchText = getByTestId(/search/i);
-  expect(searchText).toBeInTheDocument();
+  await waitForElement(() => screen.getByText(/giaconda/));
 });
