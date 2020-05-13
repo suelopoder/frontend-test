@@ -43,19 +43,17 @@ Not addressed issues
 - linting
 - add favicon
 - ally
-- make a single production build `npm run build`
 - use `concurrently` to have a single command `npm start` to run the app.
 - dockerize
-- improve design
+- improve design. Still not pixel perfect
 - add option to change the name on upload
 - github badges :)
 - add a service worker (could list docs offline, install app)
-- SSR
+- SSR, maybe for SEO reasons
 - keyboard shortcuts for quick usage
 - support dragging files for upload
 - performance on server search could be improved
 - add a button or "X" to clear current search
-- Improve design, its not pixel perfect.
 
 ## Libraries
 
