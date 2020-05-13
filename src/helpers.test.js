@@ -39,7 +39,7 @@ describe('getFileUploadError', () => {
 
 describe('getSizeInKb', () => {
   test('exactly 1024 b should be 1 kb', () => {
-    expect(getSizeInKb(1024)).toBe(1);
+    expect(getSizeInKb(1024)).toBe('1');
   });
 
   test('less than 1024 b should return <1 kb', () => {
@@ -53,6 +53,6 @@ describe('getTotalSizeInKb', () => {
       { size: 1024 },
       { size: 1024 },
       { size: 1024 },
-    ])).toBe(3);
+    ])).toBe('3');
   });
 })
